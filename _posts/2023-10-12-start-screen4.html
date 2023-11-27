@@ -1,0 +1,260 @@
+---
+layout: post
+title: Start Screen
+image: /images/background2.jpg
+type: hacks
+courses: { compsci: {week: 7} }
+---
+
+<!-- Liquid code, run by Jekyll, used to define location of asset(s) -->
+{% assign backgroundFile = site.baseurl | append: page.image %}
+<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/css/spaceBkg/Styles.css">
+
+<!-- Prepare DOM elements -->
+<div id="canvasContainer">
+    <canvas id="backgroundID">
+        <img id="backgroundImage" src="{{backgroundFile}}">
+    </canvas>
+</div>
+
+<!-- loading screen-->
+<div id="mainScreen">
+    <h1>The Armeneggon</h1>
+    <p><em>A Space Invaders Game</em></p>
+    <div id="start">
+        <button id="startButton">Start</button>
+    </div>
+</div>
+
+
+<div id="placeholder"></div>
+
+<!-- start screen-->
+<div id="startScreen" class="hidden">
+    <h1 id="chooseText">Choose your character</h1>
+    <div id="characterList">
+        <div class="character" onclick="selectCharacter('Henry')">
+            <img src="{{site.baseurl}}/images/whitechicken.png">
+            <p>Henry</p>
+        </div>
+        <div class="character" onclick="selectCharacter('Chiquita')">
+            <img src="{{site.baseurl}}/images/pinkchicken.png">
+            <p>Chiquita</p>
+        </div>
+        <div class="character" onclick="selectCharacter('Featherina')">
+            <img src="{{site.baseurl}}/images/purplechicken.png">
+            <p>Featherina</p>
+        </div>
+        <div class="character" onclick="selectCharacter('Chickpea')">
+            <img src="{{site.baseurl}}/images/greenchicken.png">
+            <p>Chickpea</p>
+        </div>
+        <div class="character" onclick="selectCharacter('Orange Chicken')">
+            <img src="{{site.baseurl}}/images/brownchicken.png">
+            <p>Orange Chicken</p>
+        </div>
+        <div class="character" onclick="selectCharacter('Cluck Norris')">
+            <img src="{{site.baseurl}}/images/blueyellowchicken.png">
+            <p>Cluck Norris</p>
+        </div>
+        <div class="character" onclick="selectCharacter('Eggward')">
+            <img src="{{site.baseurl}}/images/blackchicken.png">
+            <p>Eggward</p>
+        </div>
+    </div>
+    <br>
+    <br>
+    <button id="startGameButton" onclick="startGame()">Start Game</button>
+</div>
+
+<script>
+    // Prepare Background Image
+    const backgroundImg = new Image();
+    backgroundImg.src = '{{backgroundFile}}';  // Jekyll/Liquid puts filename here
+    
+    
+    // Prepare Canvas
+    const canvas = document.getElementById("backgroundID");
+    const ctx = canvas.getContext('2d');
+
+    // Prepare Window extents related to viewport
+    const maxWidth = window.innerWidth;
+    const maxHeight = window.innerHeight;
+
+    // Account for the header height
+    const headerHeight = document.querySelector('header').offsetHeight;
+
+    // Calculate the top position
+    const topPosition = headerHeight + ((maxHeight - headerHeight) / 2);    
+
+    // Prepare placeholder element
+    const placeholder = document.getElementById('placeholder');
+
+    // global variables for bkg image sizing
+    const WIDTH = backgroundImg.width;  // Image() width (meta data)
+    const HEIGHT = backgroundImg.height;
+
+backgroundImg.onload = function () {
+    // Setup background constants from background image
+    const ASPECT_RATIO = WIDTH / HEIGHT;
+    const ADJUST = 1.42; // visual layer adjust, use “1” for a perfect loop   
+         
+    // Set Dimensions to match the image width
+    const canvasWidth = maxWidth;
+    const canvasHeight = canvasWidth / ASPECT_RATIO;  // height is oriented by width
+    const canvasLeft = 0;
+    const canvasTop = 60;
+    
+    // Set dimensions for the background canvas
+    canvas.width = WIDTH / ADJUST;
+    canvas.height = HEIGHT / ADJUST;
+
+    // Set Style properties for the background canvas
+    canvas.style.width = `${canvasWidth}px`;
+    canvas.style.height = `${canvasHeight}px`;
+    canvas.style.position = 'absolute';
+    canvas.style.left = `${canvasLeft}px`;
+    canvas.style.top = `${canvasTop}px`;
+    
+    // Game speed is a common game variable
+    var gameSpeed = 2;
+    
+    // Layer is set up to support Parallax, multiple layers
+    class Layer {
+        constructor(image, speedRatio) {
+            this.x = 0;
+            this.y = 0;
+            this.width = WIDTH;
+            this.height = HEIGHT;
+            this.image = image;
+            this.speedRatio = speedRatio;
+            this.speed = gameSpeed * this.speedRatio;
+            this.frame = 0;
+        }
+        update() {
+            this.x = (this.x - this.speed) % this.width;
+        }
+        draw() {
+            ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
+        }
+            
+    }
+        
+    
+    // Background object
+    var backgroundObj = new Layer(backgroundImg, 0.2);
+    
+    // Animation loop
+    function animation() {
+        backgroundObj.draw();
+    
+        requestAnimationFrame(animation);  // cycle animation, recursion
+    }
+    
+    // Start animation process
+    animation();
+    
+    //Invert the colors
+    var isFilterEnabled = true;
+    const defaultFilter = getComputedStyle(document.documentElement).getPropertyValue('--default-canvas-filter');
+    if (isFilterEnabled) {
+        canvas.style.filter = "none";  // remove filter
+    } else {
+        canvas.style.filter = defaultFilter; // Apply the default filter value
+    }
+
+    //load text
+    document.getElementById('mainScreen').style.display = 'block';
+}
+
+
+//adjusts size of placeholder
+function placeholderAdjust() {
+    const backgroundImg = document.getElementById('backgroundImage');
+    if (backgroundImg.complete) {
+        const backgroundHeight = backgroundImg.height;
+        placeholder.style.height = backgroundHeight + 'px';
+    }
+}
+    
+// Call the function initially and on window resize
+window.addEventListener('resize', placeholderAdjust);
+
+// Trigger the adjustment when the window loads
+window.addEventListener('load', placeholderAdjust);
+
+
+//start button code
+document.getElementById('startButton').addEventListener('click', function() {
+    var mainScreen = document.getElementById("mainScreen");
+    mainScreen.remove();
+    var startScreen = document.getElementById('startScreen');
+    startScreen.classList.remove('hidden');
+});
+
+let selectedCharacter = null;
+
+//select a character from the menu
+function selectCharacter(character) {
+    selectedCharacter = character;
+    updateCharacterSelection();
+}
+
+//update which character is selected
+function updateCharacterSelection() {
+    const characters = document.querySelectorAll('.character');
+    characters.forEach(char => {
+        char.classList.remove('selected');
+        if (char.id === selectedCharacter) {
+            char.classList.add('selected');
+        }
+    });
+}
+
+var chooseText = document.getElementById("chooseText");
+var startGameRemove = ["mainScreen", "startScreen", "characterList", "startGameButton", "chooseText"];
+
+//start the game
+function startGame() {
+    if (selectedCharacter) {
+        alert(`Game starting with ${selectedCharacter}`);
+        // Remove elements using a loop
+        for (var i = 0; i < startGameRemove.length; i++) {
+            var element = document.getElementById(startGameRemove[i]);
+            if (element) {
+                if (i === 1) {
+                    element.classList.remove('hidden');
+                } else {
+                    element.remove();
+                }
+            }
+        }
+        // Add logic to proceed to the actual game
+    } else {
+        alert('Please select a character first.');
+    }
+}
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight') {
+        navigateCharacter(1);
+    } else if (event.key === 'ArrowLeft') {
+        navigateCharacter(-1);
+    }
+});
+
+function navigateCharacter(direction) {
+    const characters = document.querySelectorAll('.character');
+    const currentIndex = Array.from(characters).findIndex(char => char.classList.contains('selected'));
+
+    let newIndex = currentIndex + direction;
+    if (newIndex < 0) {
+        newIndex = characters.length - 1;
+    } else if (newIndex >= characters.length) {
+        newIndex = 0;
+    }
+
+    selectCharacter(characters[newIndex].id);
+}
+
+</script>
