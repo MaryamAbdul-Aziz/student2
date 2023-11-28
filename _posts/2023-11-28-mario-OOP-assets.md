@@ -1,5 +1,5 @@
 ---
-toc: false
+toc: true
 comments: false
 layout: post
 title: OOP, CSSE mini project Part 1
@@ -9,53 +9,47 @@ courses: { compsci: {week: 13} }
 ---
 
 
-## OOP Conversion Outline
-
-The OOP hierarchy shown below is designed to promote reusability, encapsulation, and a clear separation of entities.
-
-- GameEnv manages the overall game state variables
-- GameObject provides a common base for defining game entities (Player, Background, ...)
-- GameLevel holds level-specific assets and creates GameObjects
-- GameControl handles the transition between different Game Levels
+## JS OOP Assets
 
 ```text
 GameEnv
 |   ├── Attributes:
 │   |   ├── levels
 │   |   ├── gameObjects
-|   │   └── ...
+|   │   └── canvas
 |   |
-|   ├── Methods: 
-│   |    ├── update: update, draw
-│   |    ├── destroy: all gameObjects
-│   |    └── ...
+|   ├── Purpose: 
+│   |    ├── update: updates objects, draws objects on canvas
+│   |    ├── destroy: destroys all gameObjects in reverse order
+│   |    └── canvas: creates canvas, sets bounds, resizes canvas
 │
 ├── GameObject
-│   ├── Player: sprite animation, wasd
-│   ├── Background: fit to screen, scrolling 
-│   ├── Platform: fixed to bottom, scrolling
-│   └── ...
+|   └── Allows for collision detecton, animation, and resizing
+│       ├── Player: animates, controls with wasd
+│       ├── Background: fit to screen, scrolling 
+│       └── Platform: fixed to bottom, scrolling
 │
 ├── GameLevel
-|   ├── Tag: key
 │   ├── Attributes:
 │   |   ├── playerAssets
 │   |   ├── backgroundAssets
 │   |   ├── platformAssets
-│   |   └── ...
+│   |   └── objectAssets
 |   |
 │   └── Methods: 
-│   |    ├── load: "new" GameObject created from assets
-│   |    └── ...
+│   |    ├── load: loads "new" GameObject created from assets
+│   |    ├── loads player, platform, background
+|   |    └── possibly changes player speed, object speed, etc.
 |
 └── GameControl
 │   ├── Methods: 
-|   |    ├── gameLoop: drive action of game level
-│   |    ├── transitionToLevel: destroys and creates objects for game level
-│   |    └── ...
-|   |
-│   └── ...
+|   |    ├── gameLoop: keeps game running, main "backbone" in code
+|   |    ├── destroy: destroys objects from previous levels
+│   |    └── transitionToLevel: destroys and creates objects for game 
 ```
+---
+
+## Mr. Mort's code below
 
 ### Game Environment
 
