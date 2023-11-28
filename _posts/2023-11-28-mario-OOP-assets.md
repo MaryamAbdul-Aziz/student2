@@ -2,7 +2,7 @@
 toc: true
 comments: false
 layout: post
-title: OOP, CSSE mini project Part 1
+title: Overview of JS OOP Assets (Mario)
 description: Fundamentals of OOP.  This describes outline of game object, game levels, and game control.
 type: hacks
 courses: { compsci: {week: 13} }
