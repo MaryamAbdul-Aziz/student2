@@ -3,7 +3,7 @@ title: Binary Counter
 layout: default
 description: A Binary Math illustrative application using HTML, Liquid, and JavaScript.
 type: hacks
-courses: { compsci: {week: 15} }
+courses: { compsci: {week: 13} }
 ---
 
 <!-- 
