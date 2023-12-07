@@ -5,6 +5,8 @@ type: plans
 courses: { compsci: {week: 15} }
 ---
 
+Link to teacher's repository: https://github.com/XavierTho/CSSE2
+
 # Lesson - Enemy
 In this lesson, we'll be going over the different characteristics in which all enemies need, and how eventually you will add a fully functional enemy into your own game.
 
