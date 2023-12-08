@@ -43,6 +43,13 @@ image: /images/platformer/backgrounds/hills.png
 
     // Define assets for the game
     var assets = {
+    enemies: {
+      goomba: {
+        src: "/images/platformer/sprites/goomba.png",
+        width: 448,
+        height: 452,
+      }
+      },
       obstacles: {
         tube: { src: "/images/platformer/obstacles/tube.png" },
       },
