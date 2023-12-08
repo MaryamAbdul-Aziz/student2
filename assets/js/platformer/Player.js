@@ -185,6 +185,13 @@ export class Player extends Character{
                 console.log(this.gravityEnabled + "grav")
                 //console.log("e");
             }
+        } else {
+            this.topOfPlatform = false;
+            this.movement.left = true;
+            this.movement.right = true;
+            this.movement.down = true;
+            this.gravityEnabled = true;
+
         }
         
     }
