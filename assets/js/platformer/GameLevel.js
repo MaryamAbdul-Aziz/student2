@@ -15,11 +15,12 @@ class GameLevel {
         this.backgroundImg = gameObject.background?.file;
         this.platformImg = gameObject.platform?.file;
         this.platformOImg = gameObject.platformO?.file;
+        this.thingImg = gameObject.thing?.file; 
         this.playerImg = gameObject.player?.file;
         this.playerData = gameObject?.player;
+        this.tubeImg = gameObject.tube?.file;
         this.enemyImg = gameObject.enemy?.file;
         this.enemyData = gameObject?.enemy;
-        this.tubeImg = gameObject.tube?.file;
         this.isComplete = gameObject?.callback; // function that determines if level is complete
         GameEnv.levels.push(this);
     }
@@ -35,19 +36,21 @@ class GameLevel {
         if (this.platformImg) {
             imagesToLoad.push(this.loadImage(this.platformImg));
         }
+        if (this.platformOImg) {
+            imagesToLoad.push(this.loadImage(this.platformOImg));
+        }
+        if (this.thingImg) {
+            imagesToLoad.push(this.loadImage(this.thingImg));
+        }
         if (this.playerImg) {
             imagesToLoad.push(this.loadImage(this.playerImg));
-        }
-        if (this.enemyImg) {
-            imagesToLoad.push(this.loadImage(this.enemyImg));
         }
         if (this.tubeImg) {
             imagesToLoad.push(this.loadImage(this.tubeImg));
         }
-        if (this.platformOImg) {
-            imagesToLoad.push(this.loadImage(this.platformOImg));
+        if (this.enemyImg) {
+            imagesToLoad.push(this.loadImage(this.enemyImg));
         }
-        
 
         try {
             // Do not proceed until images are loaded
@@ -63,7 +66,6 @@ class GameLevel {
                 new Background(backgroundCanvas, loadedImages[i], backgroundSpeedRatio);
                 i++;
             }
-
             // Prepare HTML with Platform Canvas (if platformImg is defined)
             if (this.platformImg) {
                 const platformCanvas = document.createElement("canvas");
@@ -73,7 +75,22 @@ class GameLevel {
                 new Platform(platformCanvas, loadedImages[i], platformSpeedRatio);
                 i++;
             }
-
+            if (this.platformOImg) {
+                const platformCanvas = document.createElement("canvas");
+                platformCanvas.id = "jumpPlatform";
+                document.querySelector("#canvasContainer").appendChild(platformCanvas);
+                const platformSpeedRatio = 0;
+                new PlatformO(platformCanvas, loadedImages[i], platformSpeedRatio);
+                i++;
+            }
+            if (this.thingImg) {
+                const platformCanvas = document.createElement("canvas");
+                platformCanvas.id = "thing2";
+                document.querySelector("#canvasContainer").appendChild(platformCanvas);
+                const platformSpeedRatio = 0;
+                new Thing1(platformCanvas, loadedImages[i], platformSpeedRatio);
+                i++;
+            }
             // Prepare HTML with Player Canvas (if playerImg is defined)
             if (this.playerImg) {
                 const playerCanvas = document.createElement("canvas");
@@ -83,29 +100,21 @@ class GameLevel {
                 new Player(playerCanvas, loadedImages[i], playerSpeedRatio, this.playerData);
                 i++;
             }
-            
-            if (this.enemyImg) {
-                const enemyCanvas = document.createElement("canvas");
-                enemyCanvas.id = "enemy"
-                document.querySelector("#canvasContainer").appendChild(enemyCanvas);
-                const enemySpeedRatio = 0.7;
-                new Enemy(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
-                i++;
-            }
-            if (this.thingImg) {
-                const platformCanvas = document.createElement("canvas");
-                platformCanvas.id = "thing2";
-                document.querySelector("#canvasContainer").appendChild(platformCanvas);
-                new Thing1(platformCanvas, loadedImages[i]);
-                i++;
-            }
-
+        
             // Prepare HTML with Player Canvas (if playerImg is defined)
             if (this.tubeImg) {
                 const tubeCanvas = document.createElement("canvas");
                 tubeCanvas.id = "tube";
                 document.querySelector("#canvasContainer").appendChild(tubeCanvas);
                 new Tube(tubeCanvas, loadedImages[i]);
+                i++;
+            }
+            if (this.enemyImg) {
+                const enemyCanvas = document.createElement("canvas");
+                enemyCanvas.id = "enemy"
+                document.querySelector("#canvasContainer").appendChild(enemyCanvas);
+                const enemySpeedRatio = 0.7;
+                new Enemy(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
                 i++;
             }
 
