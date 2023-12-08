@@ -16,6 +16,7 @@ class GameLevel {
         this.playerData = gameObject?.player;
         this.enemyImg = gameObject.enemy?.file;
         this.enemyData = gameObject?.enemy;
+        this.platformOImg = gameObject.platformO?.file;
         this.tubeImg = gameObject.tube?.file;
         this.isComplete = gameObject?.callback; // function that determines if level is complete
         GameEnv.levels.push(this);
@@ -41,6 +42,10 @@ class GameLevel {
         if (this.tubeImg) {
             imagesToLoad.push(this.loadImage(this.tubeImg));
         }
+        if (this.platformOImg) {
+            imagesToLoad.push(this.loadImage(this.platformOImg));
+        }
+        
 
         try {
             // Do not proceed until images are loaded
