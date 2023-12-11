@@ -12,6 +12,7 @@ class GameLevel {
     constructor(gameObject) {
         // conditional assignments from GameObject to instance variables
         this.tag = gameObject?.tag;
+        this.backgroundImg2 = gameObject.backgroundImg2?.file;
         this.backgroundImg = gameObject.background?.file;
         this.platformImg = gameObject.platform?.file;
         this.platformOImg = gameObject.platformO?.file;
@@ -30,6 +31,9 @@ class GameLevel {
         
         // test for presence of Images
         const imagesToLoad = [];
+        if (this.backgroundImg2) {
+            imagesToLoad.push(this.loadImage(this.backgroundImg2));
+        }
         if (this.backgroundImg) {
             imagesToLoad.push(this.loadImage(this.backgroundImg));
         }
@@ -58,6 +62,14 @@ class GameLevel {
             var i = 0;
 
             // Prepare HTML with Background Canvas (if backgroundImg is defined)
+            if (this.backgroundImg2) {
+                const backgroundCanvas = document.createElement("canvas");
+                backgroundCanvas.id = "background";
+                document.querySelector("#canvasContainer").appendChild(backgroundCanvas);
+                const backgroundSpeedRatio = 1;
+                new Background2(backgroundCanvas, loadedImages[i], backgroundSpeedRatio);
+                i++;
+            }
             if (this.backgroundImg) {
                 const backgroundCanvas = document.createElement("canvas");
                 backgroundCanvas.id = "background";
