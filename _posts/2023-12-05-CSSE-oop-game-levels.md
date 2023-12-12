@@ -67,8 +67,8 @@ image: /images/platformer/backgrounds/hills.png
 
     // Define assets for the game
     var assets = {
-    thing: { //you can call the key value pair anything you want, but we recommmend you call it thing
-        coin: { src: "/images/Coin.png" } //Add this one!
+    thing: {
+        coin: { src: "/images/Coin.png" }
       },  
     platformO: {
         grass: { src: "/images/brick_wall.png" },
