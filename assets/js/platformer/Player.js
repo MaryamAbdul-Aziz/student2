@@ -210,9 +210,11 @@ export class Player extends Character{
             
             // Reset movement flags if not colliding with a tube
             this.topOfPlatform = false;
+            /*
             this.movement.left = true;
             this.movement.right = true;
             this.movement.down = true;
+            */
             this.gravityEnabled = true;
         }
         
