@@ -152,9 +152,11 @@ export class Player extends Character{
             // Collision with the top of the Enemy
             if (this.collisionData.touchPoints.other.ontop) {
                 console.log("Bye Goomba");
+                deathController.setDeath(1);
+                //destroy(this.collisionData.toxuchPoints.other.ontop)
                 //this.y -= (this.bottom * .33);
                 //this.y -=10000;
-                this.collisionData.touchPoints.other -= 10000;
+                //this.collisionData.touchPoints.other -= 10000;
                 //this.collisionData.touchPoints.other.destroy(gameObject);
                 //this.Enemy.destroy();
                 //this.enemy.destroy();
