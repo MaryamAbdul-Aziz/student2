@@ -6,6 +6,7 @@ import Thing1 from './Thing1.js';
 import Tube from './Tube.js';
 import Enemy from './Enemy.js';
 import PlatformO from './PlatformO.js'
+import Platform2 from './Platform2.js'
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
@@ -16,6 +17,7 @@ class GameLevel {
         this.backgroundImg = gameObject.background?.file;
         this.platformImg = gameObject.platform?.file;
         this.platformOImg = gameObject.platformO?.file;
+        this.platform2Img = gameObject.platform2?.file;
         this.thingImg = gameObject.thing?.file; 
         this.playerImg = gameObject.player?.file;
         this.playerData = gameObject?.player;
@@ -42,6 +44,9 @@ class GameLevel {
         }
         if (this.platformOImg) {
             imagesToLoad.push(this.loadImage(this.platformOImg));
+        }
+        if (this.platform2Img) {
+            imagesToLoad.push(this.loadImage(this.platform2Img));
         }
         if (this.thingImg) {
             imagesToLoad.push(this.loadImage(this.thingImg));
@@ -93,6 +98,14 @@ class GameLevel {
                 document.querySelector("#canvasContainer").appendChild(platformCanvas);
                 const platformSpeedRatio = 0;
                 new PlatformO(platformCanvas, loadedImages[i], platformSpeedRatio);
+                i++;
+            }
+            if (this.platform2Img) {
+                const platformCanvas = document.createElement("canvas");
+                platformCanvas.id = "jumpPlatform";
+                document.querySelector("#canvasContainer").appendChild(platformCanvas);
+                const platformSpeedRatio = 0;
+                new Platform2(platformCanvas, loadedImages[i], platformSpeedRatio);
                 i++;
             }
             if (this.thingImg) {
