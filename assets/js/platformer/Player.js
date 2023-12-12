@@ -68,7 +68,7 @@ export class Player extends Character{
     
         // verify key is in active animations
         if (key in this.pressedKeys) {
-            result = (!this.isIdle && this.bottom <= this.y);
+            result = (!this.isIdle && (this.topOfPlatform || this.bottom <= this.y));
         }
 
         // scene for on top of tube animation
