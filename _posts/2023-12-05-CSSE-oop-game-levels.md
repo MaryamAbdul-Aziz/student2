@@ -7,31 +7,28 @@ courses: { compsci: {week: 13} }
 image: /images/platformer/backgrounds/hills.png
 ---
 
+<link rel="stylesheet" href="/_sass/minima/style.css">
+
 <style>
-    #gameBegin, #controls, #gameOver {
+  #gameBegin, #controls, #gameOver {
     position: relative;
     z-index: 2; /*Ensure the controls are on top*/
   }
-  
   #toggleCanvasEffect, #background, #platform {
-    animation: fadein 5s;
+  animation: fadein 2s;
   }
-
   #startGame {
     animation: flash 0.5s infinite;
   }
-
-  @keyframes flash {
+    @keyframes flash {
     50% {
       opacity: 0;
     }
   }
-
   @keyframes fadeout {
     from {opacity: 1}
     to {opacity: 0}
   }
-
   @keyframes fadein {
     from {opacity: 0}
     to {opacity: 1}

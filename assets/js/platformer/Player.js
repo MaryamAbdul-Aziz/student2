@@ -3,7 +3,6 @@ import Character from './Character.js';
 import deathController from './Death.js';
 import Enemy from './Enemy.js';
 
-
 export class Player extends Character{
     // constructors sets up Character object 
     constructor(canvas, image, speedRatio, playerData){
@@ -153,8 +152,13 @@ export class Player extends Character{
             // Collision with the top of the Enemy
             if (this.collisionData.touchPoints.other.ontop) {
                 console.log("Bye Goomba");
-                this.y -= (this.bottom * .33);
-                this.collisionData.touchPoints.other.destroy();
+                //this.y -= (this.bottom * .33);
+                //this.y -=10000;
+                this.collisionData.touchPoints.other -= 10000;
+                //this.collisionData.touchPoints.other.destroy(gameObject);
+                //this.Enemy.destroy();
+                //this.enemy.destroy();
+                //destroy(this.collisionData.touchPoints.other);
             }
         }
         if (this.collisionData.touchPoints.other.id === "jumpPlatform") {
