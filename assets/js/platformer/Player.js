@@ -112,6 +112,10 @@ export class Player extends Character{
         if (this.isGravityAnimation("w")) {
             if (this.movement.down) this.y -= (this.bottom * .33);  // jump 33% higher than bottom
         } 
+        if (this.pressedKeys["r"]) {
+            console.log("r pressed")
+            if (this.movement.right) this.x -= (this.left);  // jump 33% higher than bottom
+        } 
 
         // Perform super update actions
         super.update();
@@ -158,7 +162,6 @@ export class Player extends Character{
                 //this.y -=10000;
                 //this.collisionData.touchPoints.other -= 10000;
                 //this.collisionData.touchPoints.other.destroy(gameObject);
-                //this.Enemy.destroy();
                 //this.enemy.destroy();
                 //destroy(this.collisionData.touchPoints.other);
             }
@@ -195,16 +198,16 @@ export class Player extends Character{
         else {
             if (this.collisionData.touchPoints.other.id === "thing2") {
                 // Collision with the left side of the Tub
-                if (this.collisionData.touchPoints.coin.left) {
+                if (this.collisionData.touchPoints.other.left) {
                     this.touchCoin = true;
-                    console.log("o")
-                    window.location.reload();
+                    console.log("coin left")
+                    //window.location.reload();
                 }
                 // Collision with the right side of the Tube
-                if (this.collisionData.touchPoints.coin.right) {
-                    console.log("p")
+                if (this.collisionData.touchPoints.other.right) {
+                    console.log("coin right")
                     this.touchCoin = true;
-                    window.location.reload();
+                    //window.location.reload();
                 }
             }    
             

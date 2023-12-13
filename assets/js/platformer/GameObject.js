@@ -148,6 +148,7 @@ class GameObject {
     
         // Determine hit and touch points of hit
         this.collisionData = {
+            other: other,
             hit: (
                 thisLeft < otherRect.right &&
                 thisRight > otherRect.left &&
