@@ -16,3 +16,4 @@ Lessons:
 - [Enemy](https://github.com/XavierTho/CSSE2) | [Lesson plan](https://maryamabdul-aziz.github.io/student2//2023/12/05/enemy_lesson.html)
 - [Platform](https://github.com/ryann96/Team-Project) | [Lesson plan](https://maryamabdul-aziz.github.io/student2//2023/12/06/Platforms_lesson_IPYNB_2_.html)
 - [Parallax Scrolling](https://github.com/Gabriel-Gravin/OOP_Test) | [Lesson plan](https://maryamabdul-aziz.github.io/student2//2023/12/10/Parallax_Lesson_IPYNB_2_.html)
+- [Animation](https://github.com/deanphillips24/oop_project_csse2) | [Lesson plan](https://maryamabdul-aziz.github.io/student2//2023/12/11/Animation-Lesson_IPYNB_2_.html)
