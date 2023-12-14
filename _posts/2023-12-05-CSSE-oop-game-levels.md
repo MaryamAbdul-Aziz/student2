@@ -107,18 +107,6 @@ image: /images/platformer/backgrounds/hills.png
           s: {  },
           d: { row: 2, frames: 7, idleFrame: { column: 7, frames: 0 } }
         },
-        monkey: { //mr lopez
-          src: "/images/platformer/sprites/lopezanimation.png",
-          width: 46,
-          height: 52.5,
-          idle: { row: 6, frames: 1, idleFrame: {column: 1, frames: 0} },
-          a: { row: 1, frames: 3, idleFrame: { column: 1, frames: 0 } }, // Right Movement
-          d: { row: 2, frames: 4, idleFrame: { column: 1, frames: 0 } }, // Left Movement 
-          as: { row: 5, frames: 4, idleFrame: {column: 1, frames: 0} },
-          ds: { row: 4, frames: 4, idleFrame: {column: 1, frames: 0} },
-          //s: {},  Stop the movement 
-        },        
-        /*  
         monkey: {
           src: "/images/platformer/sprites/monkey.png",
           width: 40,
@@ -130,7 +118,6 @@ image: /images/platformer/backgrounds/hills.png
           s: { row: 12, frames: 15 },
           d: { row: 0, frames: 15, idleFrame: { column: 7, frames: 0 } }
         }
-        */
       }
     };
 
