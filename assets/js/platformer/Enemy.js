@@ -30,12 +30,12 @@ export class Enemy extends Character {
         if (Math.random() < 0.006) {
             this.speed = Math.random() < 0.5 ? -this.speed : this.speed;
         }
-
+        /*
         //Randomly turn Goomba into God Mode
         if (Math.random() < 0.01) {
             this.performGoombaSpecial();
         }
-
+        */
         //Initially get the enemy moving
         this.x += this.speed;
         
@@ -44,7 +44,7 @@ export class Enemy extends Character {
             this.destroy();
         }
     }
-    
+    /*
     performGoombaSpecial() {
         if (!this.specialActionActive) {
             // Temporary increase in speed
@@ -71,7 +71,7 @@ export class Enemy extends Character {
             this.specialActionActive = true;
         }
     }
-
+*/
 
     /* murder() {
         let i = 1;
