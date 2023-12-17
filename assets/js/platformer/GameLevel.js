@@ -1,5 +1,6 @@
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
+import Background2 from './Background2.js';
 import Platform from './Platform.js';
 import Player from './Player.js';
 import Thing1 from './Thing1.js';
@@ -7,7 +8,6 @@ import Tube from './Tube.js';
 import Enemy from './Enemy.js';
 import PlatformO from './PlatformO.js'
 import Platform2 from './Platform2.js'
-import Background2 from './Background2.js';
 
 
 // Store the assets and attributes of the Game at the specific GameLevel.
