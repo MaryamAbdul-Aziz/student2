@@ -7,13 +7,15 @@ import Tube from './Tube.js';
 import Enemy from './Enemy.js';
 import PlatformO from './PlatformO.js'
 import Platform2 from './Platform2.js'
+import Background2 from './Background2.js';
+
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
     constructor(gameObject) {
         // conditional assignments from GameObject to instance variables
         this.tag = gameObject?.tag;
-        this.backgroundImg2 = gameObject.backgroundImg2?.file;
+        this.backgroundImg2 = gameObject.background2?.file;
         this.backgroundImg = gameObject.background?.file;
         this.platformImg = gameObject.platform?.file;
         this.platformOImg = gameObject.platformO?.file;
@@ -68,11 +70,11 @@ class GameLevel {
 
             // Prepare HTML with Background Canvas (if backgroundImg is defined)
             if (this.backgroundImg2) {
-                const backgroundCanvas = document.createElement("canvas");
-                backgroundCanvas.id = "background";
-                document.querySelector("#canvasContainer").appendChild(backgroundCanvas);
+                const background2Canvas = document.createElement("canvas");
+                background2Canvas.id = "background";
+                document.querySelector("#canvasContainer").appendChild(background2Canvas);
                 const backgroundSpeedRatio = 1;
-                new Background2(backgroundCanvas, loadedImages[i], backgroundSpeedRatio);
+                new Background2(background2Canvas, loadedImages[i], backgroundSpeedRatio);
                 i++;
             }
             if (this.backgroundImg) {
