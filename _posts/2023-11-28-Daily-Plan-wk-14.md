@@ -17,4 +17,4 @@ Lessons:
 - [Platform](https://github.com/ryann96/Team-Project) | [Lesson plan](https://maryamabdul-aziz.github.io/student2//2023/12/06/Platforms_lesson_IPYNB_2_.html)
 - [Parallax Scrolling](https://github.com/Gabriel-Gravin/OOP_Test) | [Lesson plan](https://maryamabdul-aziz.github.io/student2//2023/12/10/Parallax_Lesson_IPYNB_2_.html)
 - [Animation](https://github.com/deanphillips24/oop_project_csse2) | [Lesson plan](https://maryamabdul-aziz.github.io/student2//2023/12/11/Animation-Lesson_IPYNB_2_.html)
-- [Local Storage](https://github.com/Trystan-Schmits/MiniProject) | [Lesson Plan](https://maryamabdul-aziz.github.io/student2//2023/12/13/LocalStorage_code_IPYNB_2_.html)
+- [Local Storage](https://github.com/Trystan-Schmits/MiniProject) | [Lesson plan](https://maryamabdul-aziz.github.io/student2//2023/12/13/LocalStorage_code_IPYNB_2_.html)

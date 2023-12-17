@@ -15,7 +15,7 @@ permalink: /about/
 ## Other Information
 
 **Currently listening:**   
-<a href="https://www.youtube.com/watch?v=viTjSjdetU0"> Moves Like Jagger</a> by Maroon 5
+<a href="https://www.youtube.com/watch?v=FpIsc2N0CNw"> This December</a> by Ricky Montgomery
 
 **Currently reading:**  
 Nothing at the moment!

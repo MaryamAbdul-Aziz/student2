@@ -21,6 +21,9 @@ courses: { compsci: {week: 10} }
 
 [More detailed summary of accomplishments](https://maryamabdul-aziz.github.io/student//2023/10/26/Maryam-review_IPYNB_2_.html)
 
+[Group game repository](https://github.com/kaylale124/final-game/)
+[Group game blog](https://kaylale124.github.io/final-game/)
+
 
 Future goals:
 - Solve problems faster, finish all goals and all areas of project
