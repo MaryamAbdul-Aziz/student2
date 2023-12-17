@@ -239,6 +239,8 @@ image: /images/platformer/backgrounds/hills.png
     GameControl.gameLoop();
 
 </script>
+
+<!-- local storage code below -->
 <!-- navigation -->
 <script type="module">
   //sidebar
