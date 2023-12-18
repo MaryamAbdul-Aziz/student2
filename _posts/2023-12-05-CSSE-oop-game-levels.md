@@ -260,4 +260,10 @@ image: /images/platformer/backgrounds/hills.png
 
   var table = myController.levelTable;
   document.getElementById("mySidebar").append(table);
+
+  var div = myController.speedDiv;
+  document.getElementById("mySidebar").append(div);
+
+  var div2 = myController.gravityDiv;
+  document.getElementById("mySidebar").append(div2);
 </script>

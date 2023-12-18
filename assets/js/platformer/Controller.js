@@ -78,11 +78,31 @@ export class Controller extends LocalStorage{
 
         var input1 = document.createElement("input"); //create inputfeild
         input1.type = "number"; //type number (1234...)
+        input1.placeholder = "2"; // Set the placeholder text
         const event = new CustomEvent("speed", { detail: {speed:()=>input1.value} });
         input1.addEventListener("input",()=>{ //after input feild is edited
             window.dispatchEvent(event); //dispatch event to update game speed
         })
         div.append(input1);
+        
+        return div; //returns <div> element
+    }
+
+    get gravityDiv(){
+        var div = document.createElement("div"); //container
+
+        var a = document.createElement("a"); //create text
+        a.innerText = "Gravity Control";
+        div.append(a);
+
+        var input2 = document.createElement("input"); //create inputfeild
+        input2.type = "number"; //type number (1234...)
+        input2.placeholder = "3"; // Set the placeholder text
+        const event = new CustomEvent("speed", { detail: {speed:()=>input2.value} });
+        input2.addEventListener("input",()=>{ //after input feild is edited
+            window.dispatchEvent(event); //dispatch event to update game speed
+        })
+        div.append(input2);
         
         return div; //returns <div> element
     }
