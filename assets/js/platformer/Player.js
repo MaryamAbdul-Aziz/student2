@@ -105,17 +105,24 @@ export class Player extends Character{
     update() {
         if (this.isAnimation("a")) {
             if (this.movement.left) this.x -= this.speed;  // Move to left
+            this.facingLeft = true;
         }
         if (this.isAnimation("d")) {
             if (this.movement.right) this.x += this.speed;  // Move to right
+            this.facingLeft = false;
         }
         if (this.isGravityAnimation("w")) {
             if (this.movement.down) this.y -= (this.bottom * .33);  // jump 33% higher than bottom
         } 
-        if (this.pressedKeys["r"]) {
-            console.log("r pressed")
-            if (this.movement.right) this.x -= (this.left);  // jump 33% higher than bottom
-        } 
+        if (this.isAnimation("s")) {
+            //this.dashFunction();
+            if (this.movement) {  // Check if movement is allowed
+                if(this.dashTimer){
+                    const moveSpeed = this.speed * 2;
+                    this.x += this.facingLeft ? -moveSpeed : moveSpeed;
+                }
+            }
+        }
 
         // Perform super update actions
         super.update();
@@ -242,6 +249,21 @@ export class Player extends Character{
                 GameEnv.backgroundSpeed = 0.4;
             }
         }
+        //dash events
+        if (event.key === "s"){
+            this.canvas.style.filter = 'invert(1)'; //invert mario
+            this.dashTimer = setTimeout(() => {
+                // Stop the player's running functions
+                clearTimeout(this.dashTimer);
+                this.dashTimer = null;
+
+                // Start cooldown timer
+                this.cooldownTimer = setTimeout(() => {
+                    clearTimeout(this.cooldownTimer);
+                    this.cooldownTimer = null;
+                }, 4000);
+            }, 1000);
+        }
     }
 
     // Event listener key up
@@ -262,6 +284,14 @@ export class Player extends Character{
                 GameEnv.backgroundSpeed = 0;
                 GameEnv.backgroundSpeed2 = 0;
             }  
+        }
+        if (event.key === "s"){
+            this.canvas.style.filter = 'invert(0)'; //revert to default coloring
+            // Clear both timers on key up
+            clearTimeout(this.dashTimer);
+            clearTimeout(this.cooldownTimer);
+            this.dashTimer = null;
+            this.cooldownTimer = null;            
         }
     }
 
