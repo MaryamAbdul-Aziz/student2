@@ -7,8 +7,6 @@ courses: { compsci: {week: 13} }
 image: /images/platformer/backgrounds/hills.png
 ---
 
-<link rel="stylesheet" href="/_sass/minima/style.css">
-
 <style>
 #gameBegin, #controls, #gameOver, #settings {
     position: relative;
