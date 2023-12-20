@@ -244,7 +244,15 @@ export class Player extends Character{
                 GameEnv.backgroundSpeed2 = -0.1;
                 GameEnv.backgroundSpeed = -0.4;
             }
+            if (key === "s" && this.facingLeft) {
+                GameEnv.backgroundSpeed2 = -0.1;
+                GameEnv.backgroundSpeed = -0.4;
+            }
             if (key === "d") {
+                GameEnv.backgroundSpeed2 = 0.1;
+                GameEnv.backgroundSpeed = 0.4;
+            }
+            if (key === "s" && !this.facingLeft) {
                 GameEnv.backgroundSpeed2 = 0.1;
                 GameEnv.backgroundSpeed = 0.4;
             }
@@ -283,7 +291,11 @@ export class Player extends Character{
             if (key === "d") {
                 GameEnv.backgroundSpeed = 0;
                 GameEnv.backgroundSpeed2 = 0;
-            }  
+            }
+            if (key === "s") {
+                GameEnv.backgroundSpeed = 0;
+                GameEnv.backgroundSpeed2 = 0;
+            }
         }
         if (event.key === "s"){
             this.canvas.style.filter = 'invert(0)'; //revert to default coloring
