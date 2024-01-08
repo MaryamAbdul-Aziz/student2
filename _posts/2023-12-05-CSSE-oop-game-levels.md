@@ -281,6 +281,11 @@ document.getElementById('leaderboardButton').addEventListener('click', showLeade
     const playerScore = document.getElementById("timeScore").innerHTML;
     const playerName = prompt(`You scored ${playerScore}! What is your name?`);
     let temp = localStorage.getItem("playerScores");
+
+    if (!temp) {
+      temp = "";
+    }
+    s
     temp += playerName + "," + playerScore.toString() + ";";
     localStorage.setItem("playerScores", temp);
 
