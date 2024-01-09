@@ -12,7 +12,7 @@ image: /images/platformer/backgrounds/hills.png
     position: relative;
     z-index: 2; /*Ensure the controls are on top*/
   }
-  #toggleCanvasEffect, #background, #platform {
+  /*#toggleCanvasEffect, */#background, #platform {
   animation: fadein 2s;
   }
   #startGame {
@@ -65,7 +65,7 @@ image: /images/platformer/backgrounds/hills.png
     </div>
     <div id="controls"> <!-- Controls -->
         <!-- Background controls -->
-            <button id="toggleCanvasEffect">Invert</button>
+            <!--<button id="toggleCanvasEffect">Invert</button>-->
             <button id="leaderboardButton">Leaderboard</button>
     </div>
         <div id="settings"> <!-- Controls -->
@@ -339,7 +339,7 @@ document.getElementById('leaderboardButton').addEventListener('click', showLeade
     */
 
     // create listeners
-    toggleCanvasEffect.addEventListener('click', GameEnv.toggleInvert);
+    //toggleCanvasEffect.addEventListener('click', GameEnv.toggleInvert);
     window.addEventListener('resize', GameEnv.resize);
 
     // start game

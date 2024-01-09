@@ -26,8 +26,10 @@ const GameControl = {
         // Trigger a resize to redraw canvas elements
         window.dispatchEvent(new Event('resize'));
         // Update invert property, twice means same as before
+        /*
         toggleCanvasEffect.dispatchEvent(new Event('click'));
         toggleCanvasEffect.dispatchEvent(new Event('click'));
+        */
 
         this.inTransition = false;
     },
