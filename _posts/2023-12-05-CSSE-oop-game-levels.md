@@ -65,12 +65,13 @@ image: /images/platformer/backgrounds/hills.png
     </div>
     <div id="controls"> <!-- Controls -->
         <!-- Background controls -->
-        <button id="toggleCanvasEffect">Invert</button>
+            <button id="toggleCanvasEffect">Invert</button>
             <button id="leaderboardButton">Leaderboard</button>
     </div>
         <div id="settings"> <!-- Controls -->
         <!-- Background controls -->
         <button id="toggleSettingsBar">Settings</button>
+        <button id="clearLocalStorage">Clear Local Storage</button>
     </div>
     <div id="gameOver" hidden>
         <button id="restartGame">Restart</button>
@@ -147,7 +148,7 @@ image: /images/platformer/backgrounds/hills.png
           wa: { row: 9, frames: 15 },
           wd: { row: 9, frames: 15 },
           a: { row: 1, frames: 15, idleFrame: { column: 7, frames: 0 } },
-          s: { row: 12, frames: 15 },
+          s: { row: 6, frames: 15 },
           d: { row: 0, frames: 15, idleFrame: { column: 7, frames: 0 } }
         },
         lopez: {
@@ -210,8 +211,6 @@ function showLeaderboard() {
   }
 }
 
-//rest of the code here
-
 // Event listener for leaderboard button to be clicked
 document.getElementById('leaderboardButton').addEventListener('click', showLeaderboard);
 
@@ -268,6 +267,16 @@ document.getElementById('leaderboardButton').addEventListener('click', showLeade
       return id.hidden;
     }
 
+    function clearLocalStorage() {
+    // Clear all local storage data
+    localStorage.clear();
+   
+    // Reload the page to reflect the changes
+    location.reload();
+    }
+
+  document.getElementById('clearLocalStorage').addEventListener('click', clearLocalStorage);
+
   async function gameOverCallBack() {
 
   const id = document.getElementById("gameOver");
@@ -281,29 +290,28 @@ document.getElementById('leaderboardButton').addEventListener('click', showLeade
     const playerScore = document.getElementById("timeScore").innerHTML;
     const playerName = prompt(`You scored ${playerScore}! What is your name?`);
     let temp = localStorage.getItem("playerScores");
+    
+    temp += playerName + "," + playerScore.toString() + ";";
+    localStorage.setItem("playerScores", temp);
 
     if (!temp) {
       temp = "";
     }
-    s
-    temp += playerName + "," + playerScore.toString() + ";";
-    localStorage.setItem("playerScores", temp);
 
     // Set a flag in local storage to indicate that the game over screen has been shown
     localStorage.setItem("gameOverScreenShown", "true");
   }
 
   // Use waitForRestart to wait for the restart button click
-  await waitForButton('restartGame');
-  id.hidden = true;
+    await waitForButton('restartGame');
+    id.hidden = true;
 
   // Change currentLevel to start/restart value of null
-  GameEnv.currentLevel = null;
+    GameEnv.currentLevel = null;
 
   // Reset the flag so that the game over screen can be shown again on the next game over
-  localStorage.removeItem("gameOverScreenShown");
-
-  return true;
+    localStorage.removeItem("gameOverScreenShown");
+    return true;
 }
 
     /*  ==========================================
