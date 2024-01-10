@@ -30,6 +30,9 @@ image: /images/platformer/backgrounds/hills.png
       transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
       background-color: black; 
     }
+  .center-text {
+    text-align: center;
+  }
     @keyframes flash {
     50% {
       opacity: 0;
@@ -168,48 +171,56 @@ image: /images/platformer/backgrounds/hills.png
 
 // Function to switch to the leaderboard screen
 function showLeaderboard() {
-    const id = document.getElementById("gameOver");
-    id.hidden = false;
-    // Hide game canvas and controls
-    document.getElementById('canvasContainer').style.display = 'none';
-    document.getElementById('controls').style.display = 'none';
+  const id = document.getElementById("gameOver");
+  id.hidden = false;
+
+  // Hide game canvas and controls
+  document.getElementById('canvasContainer').style.display = 'none';
+  document.getElementById('controls').style.display = 'none';
 
   // Create and display leaderboard section
   const leaderboardSection = document.createElement('div');
   leaderboardSection.id = 'leaderboardSection';
-  leaderboardSection.innerHTML = '<h1 style="text-align: center; font-size: 18px;">Leaderboard </h1>';
-  document.querySelector(".page-content").appendChild(leaderboardSection)
-  // document.body.appendChild(leaderboardSection);
+  leaderboardSection.innerHTML = '<h1 style="text-align: center; font-size: 18px;">Leaderboard</h1>';
 
-  const playerScores = localStorage.getItem("playerScores")
-  const playerScoresArray = playerScores.split(";")
-  const scoresObj = {}
-  const scoresArr = []
-  for(let i = 0; i< playerScoresArray.length-1; i++){
-    const temp = playerScoresArray[i].split(",")
-    scoresObj[temp[0]] = parseInt(temp[1])
-    scoresArr.push(parseInt(temp[1]))
-  }
+  // Create a table
+  const leaderboardTable = document.createElement('table');
+  leaderboardTable.style.width = '30%';
+  leaderboardTable.style.margin = '0 auto';  // Center the table horizontally
 
-  scoresArr.sort()
+  // Create header row and format
+  const headerRow = leaderboardTable.insertRow();
+  const headerCell1 = headerRow.insertCell(0);
+  const headerCell2 = headerRow.insertCell(1);
+  headerCell1.innerHTML = '<b>Player Name</b>';
+  headerCell2.innerHTML = '<b>Time (seconds)</b>';
+  headerCell1.classList.add('center-text');
+  headerCell2.classList.add('center-text');
 
-  const finalScoresArr = []
-  for (let i = 0; i<scoresArr.length; i++) {
-    for (const [key, value] of Object.entries(scoresObj)) {
-      if (scoresArr[i] ==value) {
-        finalScoresArr.push(key + "," + value)
-        break;
-      }
-    }
-  }
-  let rankScore = 1;
-  for (let i =0; i<finalScoresArr.length; i++) {
-    const rank = document.createElement('div');
-    rank.id = `rankScore${rankScore}`;
-    rank.innerHTML = `<h2 style="text-align: center; font-size: 18px;">${finalScoresArr[i]} </h2>`;
-    document.querySelector(".page-content").appendChild(rank)    
-  }
+  // Get player scores from local storage
+  const playerScores = localStorage.getItem("playerScores");
+  const playerScoresArray = playerScores.split(";").filter(score => score.trim() !== "");
+
+  // Create a row for each player and add it to the table
+  playerScoresArray.forEach(playerScore => {
+    const [playerName, score] = playerScore.split(",");
+    const row = leaderboardTable.insertRow();
+    const cell1 = row.insertCell(0);
+    const cell2 = row.insertCell(1);
+    cell1.innerHTML = playerName;
+    cell2.innerHTML = score;
+
+    cell1.classList.add('center-text');
+    cell2.classList.add('center-text');
+  });
+
+  // Append the table to the leaderboard section
+  leaderboardSection.appendChild(leaderboardTable);
+
+  // Append the leaderboard section to the page content
+  document.querySelector(".page-content").appendChild(leaderboardSection);
 }
+
 
 // Event listener for leaderboard button to be clicked
 document.getElementById('leaderboardButton').addEventListener('click', showLeaderboard);
@@ -288,15 +299,15 @@ document.getElementById('leaderboardButton').addEventListener('click', showLeade
   // Check if the game over screen has been shown before
   if (!gameOverScreenShown) {
     const playerScore = document.getElementById("timeScore").innerHTML;
-    const playerName = prompt(`You scored ${playerScore}! What is your name?`);
+    const playerName = prompt(`Your time was ${playerScore} seconds! What is your name?`);
     let temp = localStorage.getItem("playerScores");
-    
-    temp += playerName + "," + playerScore.toString() + ";";
-    localStorage.setItem("playerScores", temp);
 
     if (!temp) {
       temp = "";
     }
+    
+    temp += playerName + "," + playerScore.toString() + ";";
+    localStorage.setItem("playerScores", temp);
 
     // Set a flag in local storage to indicate that the game over screen has been shown
     localStorage.setItem("gameOverScreenShown", "true");
