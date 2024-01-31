@@ -1,14 +1,14 @@
 ---
 layout: post
 title: Start Screen
-image: /images/background2.jpg
+image: /images/spacecoyotes/background2.jpg
 type: hacks
 courses: { compsci: {week: 7} }
 ---
 
 <!-- Liquid code, run by Jekyll, used to define location of asset(s) -->
 {% assign backgroundFile = site.baseurl | append: page.image %}
-<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/css/spaceBkg/Styles.css">
+<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/_sass/minima/spacecoyoteStyles.css">
 
 <!-- Prepare DOM elements -->
 <div id="canvasContainer">
@@ -34,31 +34,31 @@ courses: { compsci: {week: 7} }
     <h1 id="chooseText">Choose your character</h1>
     <div id="characterList">
         <div class="character" onclick="selectCharacter('Henry')">
-            <img src="{{site.baseurl}}/images/whitechicken.png">
+            <img src="{{site.baseurl}}/images/spacecoyotes/whitechicken.png">
             <p>Henry</p>
         </div>
         <div class="character" onclick="selectCharacter('Chiquita')">
-            <img src="{{site.baseurl}}/images/pinkchicken.png">
+            <img src="{{site.baseurl}}/images/spacecoyotes/pinkchicken.png">
             <p>Chiquita</p>
         </div>
         <div class="character" onclick="selectCharacter('Featherina')">
-            <img src="{{site.baseurl}}/images/purplechicken.png">
+            <img src="{{site.baseurl}}/images/spacecoyotes/purplechicken.png">
             <p>Featherina</p>
         </div>
         <div class="character" onclick="selectCharacter('Chickpea')">
-            <img src="{{site.baseurl}}/images/greenchicken.png">
+            <img src="{{site.baseurl}}/images/spacecoyotes/greenchicken.png">
             <p>Chickpea</p>
         </div>
         <div class="character" onclick="selectCharacter('Orange Chicken')">
-            <img src="{{site.baseurl}}/images/brownchicken.png">
+            <img src="{{site.baseurl}}/images/spacecoyotes/brownchicken.png">
             <p>Orange Chicken</p>
         </div>
         <div class="character" onclick="selectCharacter('Cluck Norris')">
-            <img src="{{site.baseurl}}/images/blueyellowchicken.png">
+            <img src="{{site.baseurl}}/images/spacecoyotes/blueyellowchicken.png">
             <p>Cluck Norris</p>
         </div>
         <div class="character" onclick="selectCharacter('Eggward')">
-            <img src="{{site.baseurl}}/images/blackchicken.png">
+            <img src="{{site.baseurl}}/images/spacecoyotes/blackchicken.png">
             <p>Eggward</p>
         </div>
     </div>

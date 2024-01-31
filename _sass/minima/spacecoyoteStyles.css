@@ -1,0 +1,148 @@
+/* Define reusable classes */
+#placeholder {
+    width: 100%;
+}
+canvas {
+    position: absolute;
+    top: 60px;
+    bottom: 205px;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+#backgroundImage {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#mainScreen {
+    display: none; /* will be displayed after image loads*/
+    position: absolute;
+    top: 50%; /* Vertically centered */
+    left: 50%; /* Horizontally centered */
+    transform: translate(-50%, -50%); /* Center the text */
+    text-align: center; /* Center the text horizontally */
+    color: rgb(0, 0, 0);
+    z-index: 2; /* places element on top of other elements (bring to front) */
+}
+#mainScreen h1 {
+    font-size: 100px;
+}
+#mainScreen p {
+    font-size: 50px;
+}
+#mainScreen h3 {
+    font-size: 25px;
+}
+#startButton {
+    margin-top: 20px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    display: block;
+    font-size: 25px;
+}
+#startScreen {
+    text-align: left;
+    position: absolute;
+    top: 80px;
+    left: 270px;
+    color: rgb(0, 0, 0);
+    z-index: 2; /* places element on top of other elements (bring to front) */
+}
+#startScreen h1 {
+    font-size: 50px;
+    text-align: center;
+    color:rgb(255, 255, 255);
+}
+.hidden {
+    display: none;
+}
+#characterList {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.character {
+    cursor: pointer;
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.character:hover {
+    border-color: #007BFF;
+}
+
+.character img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 5px;
+}
+
+#startGameButton {
+    margin-top: 20px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    display: block;
+    font-size: 18px;
+}
+
+#startGameButton:hover {
+    background-color: #0056b3;
+}
+
+#gameOverButton {
+    margin-top: 20px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%; /* Vertically centered */
+    left: 50%; /* Horizontally centered */
+    transform: translate(-50%, -50%); /* Center the button */
+    z-index: 2; /* places element on top of other elements (bring to front) */
+}
+
+
+#gameOverButton:hover {
+    background-color: #0056b3;
+}
+
+#gameOverScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99; /* Ensure it's displayed on top of the canvas */
+    display: none;
+}
+
+#gameOverImage {
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    bottom: 205px;
+    left: 0;
+    width: 100%;
+}
