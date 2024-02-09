@@ -13,7 +13,7 @@ images:
     src: /images/spacecoyotes/background2.jpg
   chicken:
     src: /images/spacecoyotes/final-boss.png
-  coyote:
+  coyote: 
     src: /images/spacecoyotes/coyote.png
 monkey:
     src: /images/spacecoyotes/whitechicken2.png
