@@ -1,11 +1,11 @@
 ---
 comments: false
 layout: default
-image: spacecoyotes/whitechicken.png
+image: /images/spacecoyotes/whitechicken.png
 title: Full Game
 description: Use JavaScript without external libraries to loop background moving across screen. Depends on Background.js and GameObject.js.
 type: hacks
-courses: { compsci: {week: 7} }
+courses: { compsci: {week: 18} }
 image: /images/spacecoyotes/background2.jpg
 over: /images/spacecoyotes/gameover.png
 images:
@@ -13,7 +13,7 @@ images:
     src: /images/spacecoyotes/background2.jpg
   chicken:
     src: /images/spacecoyotes/final-boss.png
-  coyote: 
+  coyote:
     src: /images/spacecoyotes/coyote.png
 monkey:
     src: /images/spacecoyotes/whitechicken2.png
@@ -98,7 +98,7 @@ over:
                 loadImage('{{backgroundFile}}'),
                 loadImage('{{chickenSpriteImage}}'),
                 loadImage('{{coyoteSpriteImage}}'),
-                loadImage('{{site.baseurl}}/images/whitechicken2.png'),
+                loadImage('{{site.baseurl}}/images/spacecoyotes/whitechicken2.png'),
             ]);
 
             // Setup Globals
