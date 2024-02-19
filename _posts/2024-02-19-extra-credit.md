@@ -1,6 +1,5 @@
 ---
 layout: post
-toc: true
 title: 'Extra Credit: YouTube video'
 type: hacks
 courses: {'compsci': {'week': 18}}
