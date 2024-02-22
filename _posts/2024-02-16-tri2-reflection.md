@@ -114,3 +114,15 @@ function coinSound() {
 Vrnda Kanhye: Photo 2 
 I really liked the selective color and the framing of the photo.
 <img src="{{site.baseurl}}/images/natm5.png">
+
+## Night at the Museum Reflection
+
+While our game is technically impressive considering the number of people working on it and all the different features + the functionality of the game, it can always be improved upon and work smoother or better.
+
+The other CS projects at N@tM were from CSP and CSA students, and their project requirements were different as they relied on data structures and connected a frontend and backend and we didn't.
+
+We could utilize frontend and backened development by: 
+
+- Storing data like the leaderboard and the fun facts in the backend 
+- Storing the visuals/sprites in the frontend 
+- Dedicating some members of our class to frontend development and some to backend development
