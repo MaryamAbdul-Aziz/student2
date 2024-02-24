@@ -15,7 +15,7 @@ permalink: /about/
 ## Other Information
 
 **Currently listening:**   
-<a href="https://www.youtube.com/watch?v=FpIsc2N0CNw"> This December</a> by Ricky Montgomery
+<a href="https://www.youtube.com/watch?v=RNaDcwSOUUw">November</a> by Sparkbird
 
 **Currently reading:**  
 Nothing at the moment!
