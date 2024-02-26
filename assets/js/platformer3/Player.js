@@ -1,7 +1,7 @@
 import GameEnv from './GameEnv.js';
 import Character from './Character.js';
 import GameControl from './GameControl.js';
-import {playPlayerDeath, playJump} from './Audio.js';
+import {playPlayerDeath, mageDeath, playJump, mageJump, tubeSound, portalSound} from './Audio.js';
 import Socket from './Multiplayer.js';
 
 /**
@@ -83,7 +83,9 @@ export class Player extends Character {
             if (GameEnv.difficulty === "normal" || GameEnv.difficulty === "hard") {
                 this.canvas.style.transition = "transform 0.5s";
                 this.canvas.style.transform = "rotate(-90deg) translate(-26px, 0%)";
-                playPlayerDeath();
+                if (GameEnv.currentLevel.tag == "magic realm") {
+                    mageDeath();
+                } else {playPlayerDeath();}
 
                 if (this.isDying == false) {
                     this.isDying = true;
@@ -154,17 +156,23 @@ export class Player extends Character {
         // Player moving right 
         if (this.isActiveAnimation("a")) {
             if (this.movement.left) this.x -= this.isActiveAnimation("s") ? this.moveSpeed : this.speed;  // Move to left
+            //flip mage to correct spritesheet            
+            if (GameEnv.currentLevel.tag == "magic realm") {this.canvas.style.transform = "scaleX(-1)";}
         }
         // Player moving left
         if (this.isActiveAnimation("d")) {
             if (this.movement.right) this.x += this.isActiveAnimation("s") ? this.moveSpeed : this.speed;  // Move to right
+            //flip mage to correct spritesheet
+            if (GameEnv.currentLevel.tag == "magic realm") {this.canvas.style.transform = "";}
         }
         // Player moving at dash speed left or right 
         if (this.isActiveAnimation("s")) {}
 
         // Player jumping
         if (this.isActiveGravityAnimation("w")) {
-            playJump();
+            if (GameEnv.currentLevel.tag == "magic realm") {
+                mageJump();
+            } else {playJump();}
             if (this.gravityEnabled) {
                 if (GameEnv.difficulty === "easy") {
                     this.y -= (this.bottom * .50);  // bottom jump height
@@ -186,6 +194,15 @@ export class Player extends Character {
             GameEnv.backgroundHillsSpeed = 0;
             GameEnv.backgroundMountainsSpeed = 0;
         }
+
+        //Prevent Player from Dashing Through portal
+        let portalX = (.80 * GameEnv.innerWidth)
+        if (this.x >= portalX && this.x <= GameEnv.innerWidth) {
+            this.x = portalX - 1;
+
+            GameEnv.backgroundHillsSpeed = 0;
+            GameEnv.backgroundMountainsSpeed = 0;
+        }        
 
         //Prevent Player from Leaving from Screen
         if (this.x < 0) {
@@ -231,7 +248,7 @@ export class Player extends Character {
      */
     collisionAction() {
         // Tube collision check
-        if (this.collisionData.touchPoints.other.id === "tube") {
+        if (this.collisionData.touchPoints.other.id === "tube" || this.collisionData.touchPoints.other.id === "tree") {
             // Collision with the left side of the Tube
             if (this.collisionData.touchPoints.other.left) {
                 this.movement.right = false;
@@ -244,6 +261,7 @@ export class Player extends Character {
             if (this.collisionData.touchPoints.other.bottom) {
                 this.x = this.collisionData.touchPoints.other.x;
                 this.gravityEnabled = false; // stop gravity
+                if (this.collisionData.touchPoints.other.id === "tube") {tubeSound()}
                 // Pause for two seconds
                 setTimeout(() => {   // animation in tube for 1 seconds
                     this.gravityEnabled = true;
@@ -258,37 +276,29 @@ export class Player extends Character {
             this.movement.right = true;
         }
 
-        // Tree collision check
-        if (this.collisionData.touchPoints.other.id === "tree") {
-            // Collision with the left side of the tree
+        // Portal collision check
+        if (this.collisionData.touchPoints.other.id === "portal") {
+            // Collision with the left side of the Portal
             if (this.collisionData.touchPoints.other.left) {
-                this.movement.right = false;
-            }
-            // Collision with the right side of the tree
-            if (this.collisionData.touchPoints.other.right) {
-                this.movement.left = false;
-            }
-            // Collision with the top of the player
-            if (this.collisionData.touchPoints.other.bottom) {
                 this.x = this.collisionData.touchPoints.other.x;
-                this.gravityEnabled = false; // stop gravity
+                portalSound();
+
+                //hide the player
+                this.canvas.style.display = 'none';
+                
                 // Pause for two seconds
-                setTimeout(() => {   
+                setTimeout(() => {   // animation in tube for 1 seconds
                     this.gravityEnabled = true;
                     setTimeout(() => { // move to end of screen for end of game detection
                         this.x = GameEnv.innerWidth + 1;
-                    }, 500);
-                }, 500);
+                    }, 1000);
+                }, 1000);            
             }
-        } else {
-            // Reset movement flags if not colliding with a tree
-            this.movement.left = true;
-            this.movement.right = true;
         }
 
         // Goomba collision check
         // Checks if collision touchpoint id is either "goomba" or "flyingGoomba"
-        if (this.collisionData.touchPoints.other.id === "goomba" || this.collisionData.touchPoints.other.id === "flyingGoomba") {
+        if (this.collisionData.touchPoints.other.id === "goomba" || this.collisionData.touchPoints.other.id === "flyingGoomba" || this.collisionData.touchPoints.other.id === "snake" || this.collisionData.touchPoints.other.id === "snakeSpecial" ) {
             if (GameEnv.invincible === false) {
                 GameEnv.goombaInvincible = true;
                 // Collision with the left side of the Enemy

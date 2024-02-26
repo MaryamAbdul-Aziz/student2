@@ -21,21 +21,17 @@ image: /images/platformer/backgrounds/home.png
   <a href="javascript:void(0)" id="leaderboard-header">&times; Leaderboard</a>
 </div>
 
-<!--Audio for Mushroom -->
-<audio id="Mushroom" src="{{site.baseurl}}/assets/audio/Mushroom.mp3" preload="auto"></audio>
-
-<!--Audio for Death of Goomba -->
-<audio id="goombaDeath" src="{{site.baseurl}}/assets/audio/goomba-death.mp3" preload="auto"></audio>
-
-<!--Audio for Jump oF player -->
-<audio id ="PlayerJump" src="{{site.baseurl}}/assets/audio/mario-jump.mp3" preload="auto"></audio>
-
-<!--Audio for death of player -->
-<audio id ="PlayerDeath" src="{{site.baseurl}}/assets/audio/MarioDeath.mp3" preload="auto"></audio>
-
-<!--Audio for coin collection -->
-<audio id ="coin" src="{{site.baseurl}}/assets/audio/coin.mp3" preload="auto"></audio>
-
+<!-- audio files -->
+<audio id="Mushroom" src="{{site.baseurl}}/assets/audio/Mushroom.mp3"></audio>
+<audio id="goombaDeath" src="{{site.baseurl}}/assets/audio/goomba-death.mp3"></audio>
+<audio id="snakedeath" src="{{site.baseurl}}/assets/audio/snakedeath.mp3"></audio>
+<audio id="PlayerJump" src="{{site.baseurl}}/assets/audio/mario-jump.mp3"></audio>
+<audio id="magejump" src="{{site.baseurl}}/assets/audio/magejump.mp3"></audio>
+<audio id="PlayerDeath" src="{{site.baseurl}}/assets/audio/MarioDeath.mp3"></audio>
+<audio id="magedeath" src="{{site.baseurl}}/assets/audio/magedeath.mp3"></audio>
+<audio id="coin" src="{{site.baseurl}}/assets/audio/coin.mp3"></audio>
+<audio id="tube" src="{{site.baseurl}}/assets/audio/pipe.mp3"></audio>
+<audio id="portal" src="{{site.baseurl}}/assets/audio/portal.mp3"></audio>
 
 <!-- Wrap both the controls and gameplay in a container div -->
 <div id="canvasContainer">
@@ -59,13 +55,6 @@ image: /images/platformer/backgrounds/home.png
   </div>
   <!-- JavaScript-generated canvas items are inserted here -->
 </div>
-
-<div id="container">
-    <header class="fun_facts">
-    <p id="num">Fun Fact #0</p>
-    <h3 id="fun_fact">Mario is named after frustrated landlord, Mario Segale, of the Nintendo of America building.</h3> <!-- want to access later so have id-->
-    </header>
-  </div>
 
 <footer id="cut-story"></footer>
 

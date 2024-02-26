@@ -1,6 +1,6 @@
 import Character from './Character.js';
 import GameEnv from './GameEnv.js';
-import {playGoombaDeath} from './Audio.js';
+import {playGoombaDeath, snakeDeath} from './Audio.js';
 
 export class FlyingGoomba extends Character {
   
@@ -79,6 +79,8 @@ export class FlyingGoomba extends Character {
 
         // Move the enemy
         this.x -= this.speed;
+        if (GameEnv.currentLevel.tag == "magic realm" && this.speed < 0) {this.canvas.style.transform = "scaleX(-1)";} else {this.canvas.style.transform = ""}
+
     }
 
     // Player action on collisions
@@ -114,7 +116,9 @@ export class FlyingGoomba extends Character {
             if (this.collisionData.touchPoints.other.bottom && this.immune == 0) {
                 GameEnv.invincible = true;
                 this.speed = 0;
-                playGoombaDeath();
+                if (GameEnv.currentLevel.tag == "magic realm") {
+                    snakeDeath();
+                } else {playGoombaDeath();}
 
                 setTimeout((function() {
                     GameEnv.invincible = false;

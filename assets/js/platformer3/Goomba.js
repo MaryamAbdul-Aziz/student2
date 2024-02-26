@@ -1,6 +1,6 @@
 import Character from './Character.js';
 import GameEnv from './GameEnv.js';
-import {playGoombaDeath} from './Audio.js';
+import {playGoombaDeath, snakeDeath} from './Audio.js';
 import GameControl from './GameControl.js';
 
 export class Goomba extends Character {
@@ -87,6 +87,8 @@ export class Goomba extends Character {
 
         // Move the enemy
         this.x -= this.speed;
+        if (GameEnv.currentLevel.tag == "magic realm" && this.speed < 0) {this.canvas.style.transform = "scaleX(-1)";} else {this.canvas.style.transform = ""}
+
 
         this.playerBottomCollision = false;
     }
@@ -113,7 +115,9 @@ export class Goomba extends Character {
                 this.canvas.style.transformOrigin = "bottom"; // Set the transform origin to the bottom
                 this.canvas.style.transform = "scaleY(0)"; // Make the Goomba flat
                 this.speed = 0;
-                playGoombaDeath();
+                if (GameEnv.currentLevel.tag == "magic realm") {
+                    snakeDeath();
+                } else {playGoombaDeath();}
 
                 setTimeout((function() {
                     GameEnv.invincible = false;
