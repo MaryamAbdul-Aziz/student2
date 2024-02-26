@@ -1,8 +1,8 @@
 ---
 layout: post
-comments: true
 title: 'Final: Level 4 (Plan)'
-type: plans
+type: collab
+comments: true
 courses: {'compsci': {'week': 19}}
 ---
 
