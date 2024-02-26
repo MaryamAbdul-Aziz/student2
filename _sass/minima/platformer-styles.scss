@@ -231,21 +231,3 @@ body{
   display: flex;
   text-align: center;
 }
-.fun_facts{
-  min-width: 250px;
-  background-color: rgb(12, 235, 255);
-  color: rgb(9, 107, 78);
-  font-family: "Press Start 2P", system-ui;
-  border-radius:20px;
-  position: absolute;
-  text-align: center;
-  border: 4px solid;
-  left: 50%;
-  transform: translate(-50%, -20%);
-  width: 90%;
-  padding: 10px;
-  bottom: 0px;
-}
-.fun_facts h3, .fun_facts p{
-  font-size: 1rem;
-}
