@@ -27,6 +27,8 @@ courses: {'compsci': {'week': 19}}
 
 - Modified code to accomodate different sound based on level using `GameEnv.currentLevel.tag` and `if` statements
 
+- Modified portal to disappear player after collision to give the effect of being transported
+
 - Fixed issues with sprites
     - Moved and modified portal size and position
     - Fixed issue with player and enemy spritesheet (no left-hand movement) by flipping sprite
